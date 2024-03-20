@@ -3,6 +3,7 @@ package org.example.ui.components;
 import org.example.ui.events.EventBroker;
 import org.example.ui.events.EventType;
 import org.example.ui.events.MessageListener;
+import org.example.ui.exceptions.UIException;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -40,7 +41,7 @@ public class Table extends Panel implements MessageListener {
             remove(getComponents().length - 1);
             update();
         } else {
-            System.out.println("Cannot delete row, number of rows 0");
+            throw new UIException("Cannot delete row, number of rows 0");
         }
     }
 

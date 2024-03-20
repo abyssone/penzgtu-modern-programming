@@ -38,9 +38,15 @@ public class EventBroker implements EventHandler {
             return;
         }
 
-        for (MessageListener listener : listeners) {
-            listener.onMessage(eventType, event);
+        try {
+            for (MessageListener listener : listeners) {
+                listener.onMessage(eventType, event);
+            }
+        } catch (RuntimeException re) {
+            System.out.println(String.format(
+                    "handle event, exception: eventType=%s, eMsg=%s", eventType, re.getMessage()));
         }
+
     }
 
     public ActionListener getActionListener(EventType event) {
